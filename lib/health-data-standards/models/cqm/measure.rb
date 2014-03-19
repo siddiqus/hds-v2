@@ -46,12 +46,14 @@ module HealthDataStandards
                                   name: {"$first" => "$name"},
                                   description: {"$first" => "$description"},
                                   sub_ids: {'$push' => "$sub_id"},
+                                  nqf_id: {"$first" => "$nqf_id"},
                                   subs: {'$push' => {"sub_id" => "$sub_id", "short_subtitle" => "$short_subtitle"}},
                                   category: {'$first' => "$category"}}}
 
         pipeline << {'$group' => {_id: "$category",
                                   measures: {'$push' => {"id" => "$_id", 
                                              'name' => "$name",
+                                             'nqf_id' => "$nqf_id",
                                              'description' => "$description",
                                              'subs' => "$subs",
                                              'sub_ids' => "$sub_ids"
