@@ -15,7 +15,7 @@ module HealthDataStandards
           min = timestamp.length >= 12 ? timestamp[10..11].to_i : 0
           sec = timestamp.length >= 14 ? timestamp[12..13].to_i : 0
           
-          Time.gm(year, month, day, hour, min, sec).to_i
+          Time.gm(year, month, day, hour, min, sec).to_i + 43200
         else
           nil
         end
