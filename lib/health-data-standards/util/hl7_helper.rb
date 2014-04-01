@@ -14,8 +14,9 @@ module HealthDataStandards
           hour = timestamp.length >= 10 ? timestamp[8..9].to_i : 0
           min = timestamp.length >= 12 ? timestamp[10..11].to_i : 0
           sec = timestamp.length >= 14 ? timestamp[12..13].to_i : 0
+
+          Time.gm(year, month, day, hour, min, sec).to_i - (Time.now.gmt_offset)
           
-          Time.gm(year, month, day, hour, min, sec).to_i + 43200
         else
           nil
         end
