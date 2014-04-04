@@ -85,9 +85,8 @@ module HealthDataStandards
           c32_patient = Record.new
           get_demographics(c32_patient, doc)
           create_c32_hash(c32_patient, doc)
-          check_for_cause_of_death(c32_patient)
-          
-          c32_patient
+          check_for_cause_of_death(c32_patient)         
+	        c32_patient
         end
         
         # Checks the conditions to see if any of them have a cause of death set. If they do,
