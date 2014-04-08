@@ -46,6 +46,9 @@ class Record
    :medications, :procedures, :results, :social_history, :vital_signs, :support, :advance_directives,
    :insurance_providers, :functional_statuses]
 
+	# include only valid sections seen from CCDs thus far
+	Valid_Sections = [:allergies, :conditions, :encounters, :immunizations, :medications, :procedures, :results, :vital_signs]
+
   embeds_many :provider_performances
   embeds_many :addresses, as: :locatable
   embeds_many :telecoms, as: :contactable
