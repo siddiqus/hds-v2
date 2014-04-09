@@ -16,7 +16,6 @@ module HealthDataStandards
           sec = timestamp.length >= 14 ? timestamp[12..13].to_i : 0
 
           # adjust for local time zone 
-#          Time.gm(year, month, day, hour, min, sec).to_i - (Time.now.gmt_offset)
 					Time.local(year, month, day, hour, min, sec).to_i          
         else
           nil
