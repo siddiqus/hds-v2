@@ -34,7 +34,10 @@ module HealthDataStandards
 	            provider_perf[:start] = start_date
   	          provider_perf[:end] = end_date
   					end
-            ProviderPerformance.new(start_date: provider_perf.delete(:start), end_date: provider_perf.delete(:end), provider: find_or_create_provider(provider_perf))
+						
+  					if ( provider_perf[:npi] )
+	            ProviderPerformance.new(start_date: provider_perf.delete(:start), end_date: provider_perf.delete(:end), npi: provider_perf[:npi], provider: find_or_create_provider(provider_perf))
+  					end
           end
         end
 
