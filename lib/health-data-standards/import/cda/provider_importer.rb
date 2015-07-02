@@ -23,17 +23,17 @@ module HealthDataStandards
 
           # extract the effective date or reporting period
           effective_time = doc.xpath("//cda:documentationOf/cda:serviceEvent/cda:effectiveTime")                    
-          start_date = extract_date(effective_time, "./cda:low/@value") 
-          end_date = extract_date(effective_time, "./cda:high/@value")
+          start_date = Time.new('1970','01','01').to_i
+          end_date = nil
           
           performers.map do |performer|
             provider_perf = extract_provider_data(performer, true)
             
             # in case individual reporting periods are missing
-            if provider_perf[:start] == nil || provider_perf[:end] == nil 
-	            provider_perf[:start] = start_date
-  	          provider_perf[:end] = end_date
-  					end
+#            if provider_perf[:start] == nil || provider_perf[:end] == nil 
+            provider_perf[:start] = start_date
+	          provider_perf[:end] = end_date
+#  					end
 						
   					if ( provider_perf[:npi] )
 	            ProviderPerformance.new(start_date: provider_perf.delete(:start), end_date: provider_perf.delete(:end), npi: provider_perf[:npi], provider: find_or_create_provider(provider_perf))
